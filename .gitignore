@@ -1,0 +1,2 @@
+# Always ignore, contains potentially sensitive information
+.local_zshrc 
