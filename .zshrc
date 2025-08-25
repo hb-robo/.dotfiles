@@ -1,11 +1,3 @@
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export PATH="$HOME/nvim-macos-x86_64/bin:$PATH"
-export EDITOR="nvim"
-export VISUAL="$EDITOR"
-
 # useful aliases
 alias ll='ls -lAh'
 
@@ -20,13 +12,20 @@ alias zshconfig="$EDITOR ~/.zshrc"
 # Enable colors
 autoload -U colors && colors
 
-if [ -f "$HOME/.local_zshrc" ]; then
-	source "$HOME/.local_zshrc"
-fi
+# Load starship, my zsh prompt of choice
 eval "$(starship init zsh)"
 
+# Add nvim to path and deduplicate path segments
+export PATH="$HOME/nvim-macos-x86_64/bin:$PATH"
+export EDITOR="nvim"
+export VISUAL="$EDITOR"
 
 dedupe_path() {
     export PATH=$(echo "$PATH" | tr ':' '\n' | awk '!seen[$0]++' | tr '\n' ':')
 }
 dedupe_path
+
+# Load local zshrc containing device-specific and sensitive information
+if [ -f "$HOME/.local_zshrc" ]; then
+	source "$HOME/.local_zshrc"
+fi
