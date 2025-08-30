@@ -1,6 +1,6 @@
 [user]
 	name = hb-robo
-	email = github@mailmancer.com 
+	email = 26484694+hb-robo@users.noreply.github.com
 [core]
 	excludesfile = ~/.config/git/ignore
 	pager = delta
