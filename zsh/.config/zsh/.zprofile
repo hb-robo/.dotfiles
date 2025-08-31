@@ -16,7 +16,8 @@ export LESS='-R --use-color -Dd+r$Du+b$'
 
 # Application paths
 export PATH="$HOME/.local/share/nvim/bin:$PATH"
-export PATH="$PIPX_BIN_DIR:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="$PATH:$PIPX_BIN_DIR"
 
 # Deduplicate PATH
 export PATH=$(echo "$PATH" | tr ':' '\n' | awk '!seen[$0]++' | tr '\n' ':')

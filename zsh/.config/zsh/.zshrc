@@ -23,6 +23,7 @@ alias ....='cd ../../..'
 alias home='cd ~'
 alias rzsh="exec zsh"
 alias zshconfig="$EDITOR $ZDOTDIR/.zshrc"
+alias python=python3
 
 # Enable colors
 autoload -U colors && colors
