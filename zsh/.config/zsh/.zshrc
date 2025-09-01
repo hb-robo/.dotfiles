@@ -24,6 +24,9 @@ alias home='cd ~'
 alias rzsh="exec zsh"
 alias zshconfig="$EDITOR $ZDOTDIR/.zshrc"
 alias nvimconfig="$EDITOR $XDG_CONFIG_HOME/nvim/init.lua"
+alias tmuxconfig="$EDITOR $XDG_CONFIG_HOME/tmux/tmux.conf"
+alias rtmux="tmux source-file $XDG_CONFIG_HOME/tmux/tmux.conf"
+alias alconfig="$EDITOR $XDG_CONFIG_HOME/alacritty/alacritty.toml"
 alias python=python3
 alias theme="~/.local/bin/theme-switcher"
 
