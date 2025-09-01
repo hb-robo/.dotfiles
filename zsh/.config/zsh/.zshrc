@@ -56,3 +56,5 @@ if [[ -n "$TMUX" ]]; then
     precmd_functions+=(clear_tmux_title)
     clear_tmux_title() { printf '\033]2;\007' }
 fi
+
+bindkey -v
