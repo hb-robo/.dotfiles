@@ -6,3 +6,4 @@ export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export TMUX_CONF="$XDG_CONFIG_HOME/tmux/tmux.conf"
+. "$HOME/.cargo/env"
