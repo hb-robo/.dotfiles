@@ -23,7 +23,9 @@ alias ....='cd ../../..'
 alias home='cd ~'
 alias rzsh="exec zsh"
 alias zshconfig="$EDITOR $ZDOTDIR/.zshrc"
+alias nvimconfig="$EDITOR $XDG_CONFIG_HOME/nvim/init.lua"
 alias python=python3
+alias theme="~/.local/bin/theme-switcher"
 
 # Enable colors
 autoload -U colors && colors
@@ -39,7 +41,9 @@ if [ -f "$HOME/.local_zshrc" ]; then
 	source "$HOME/.local_zshrc"
 fi
 
-# Set up interactive shell features
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 
-
+# Auto-detect system theme and set base16
+~/.local/bin/theme-switcher
+fswatch -o ~/Library/Preferences/.GlobalPreferences.plist | xargs -n1 ~/.local/bin/theme-switcher &
