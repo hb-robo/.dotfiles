@@ -945,7 +945,7 @@ end
 
 -- Always show line 0 (blank) at top when possible
 vim.cmd([[
-  set winbar=%#Normal#\
+  set winbar=%#Normal#
 ]])
 
 -- TOML Section Merger for Neovim
@@ -1012,5 +1012,28 @@ end
 vim.api.nvim_create_user_command("MergeTomlSections", merge_toml_sections, {})
 vim.api.nvim_create_user_command("SortToml", merge_toml_sections, {})
 
+-- Create a new augroup for the tmux pane renaming
+local tmux_augroup = vim.api.nvim_create_augroup("TmuxRenamePane", { clear = true })
+
+-- Autocommand to set the pane name to the filename when entering a buffer
+vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost", "BufNewFile" }, {
+	group = tmux_augroup,
+	callback = function()
+		-- Get only the filename (tail of the path)
+		local filename = vim.fn.expand("%:t")
+		if filename ~= "" then
+			local command = "tmux select-pane -T '" .. filename .. "'"
+			vim.fn.system(command)
+		end
+	end,
+})
+-- Autocommand to reset window automatic renaming on Neovim exit
+vim.api.nvim_create_autocmd({ "VimLeave" }, {
+	group = tmux_augroup,
+	callback = function()
+		-- Reset the automatic naming of the *window* to avoid showing the last process name
+		vim.fn.system("tmux set-option automatic-rename on")
+	end,
+})
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

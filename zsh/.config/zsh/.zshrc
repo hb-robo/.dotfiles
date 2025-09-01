@@ -50,3 +50,9 @@ eval "$(zoxide init zsh)"
 # Auto-detect system theme and set base16
 ~/.local/bin/theme-switcher
 fswatch -o ~/Library/Preferences/.GlobalPreferences.plist | xargs -n1 ~/.local/bin/theme-switcher &
+
+# Clear tmux pane title when in shell
+if [[ -n "$TMUX" ]]; then
+    precmd_functions+=(clear_tmux_title)
+    clear_tmux_title() { printf '\033]2;\007' }
+fi
